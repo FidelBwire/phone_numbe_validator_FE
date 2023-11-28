@@ -15,53 +15,16 @@ export class DataComponent {
 
   private options!: FilterOptions | null;
   first: number = 0;
-  rows: number = 0;
+  rows: number = 10;
   pageLinkSize = 5;
   totalRecords = 0;
-  alwaysShow: boolean = true;
+  alwaysShow: boolean = false;
   showFirstLastIcon: boolean = true;
   currentPageReportTemplate: string = 'Showing {first} to {last} of {totalRecords} items';
   rowsPerPageOptions: [] = [];
   page: number = 0;
 
-  // Dummy Data
-  phoneNumbers: PhoneNumber[] = [
-    {
-      country: 'Morocco',
-      countryId: 3,
-      customer: 'Walid Hammadi',
-      customerId: 1,
-      phoneNumber: '(212) 6007989253'
-    },
-    {
-      country: 'Morocco',
-      countryId: 3,
-      customer: 'Walid Hammadi',
-      customerId: 1,
-      phoneNumber: '(212) 6007989253'
-    },
-    {
-      country: 'Morocco',
-      countryId: 3,
-      customer: 'Walid Hammadi',
-      customerId: 1,
-      phoneNumber: '(212) 6007989253'
-    },
-    {
-      country: 'Morocco',
-      countryId: 3,
-      customer: 'Walid Hammadi',
-      customerId: 1,
-      phoneNumber: '(212) 6007989253'
-    },
-    {
-      country: 'Morocco',
-      countryId: 3,
-      customer: 'Walid Hammadi',
-      customerId: 1,
-      phoneNumber: '(212) 6007989253'
-    },
-  ];
+  phoneNumbers: PhoneNumber[] = [];
   loading: boolean = false;
 
   filterEventSubscription!: Subscription;
@@ -92,7 +55,11 @@ export class DataComponent {
   fetchPhoneNumbers() {
     this.phoneNumbersSubscription = this.phoneNumberService.getPhoneNumbers(this.page, this.rows, { country: this.options?.country, status: this.options?.status }).subscribe({
       next: (data) => {
-        // this.phoneNumbers = data.content;
+        this.phoneNumbers = data.content;
+        this.first = data.pageable.offset;
+        this.rows = data.pageable.pageSize;
+        this.totalRecords = data.totalElements;
+
       },
       error: (err) => {
         console.log('Error fetching phone numbers: ' + err)
@@ -101,10 +68,11 @@ export class DataComponent {
   }
 
   onPageChange(event: PaginatorState) {
-    if (event.rows)
+    console.log('Page: ' + event.page);
+    if (event.rows != undefined)
       this.rows = event.rows;
 
-    if (event.page)
+    if (event.page != undefined)
       this.page = event.page;
 
     this.fetchPhoneNumbers();

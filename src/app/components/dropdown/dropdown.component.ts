@@ -22,6 +22,7 @@ export class DropdownComponent {
   ngOnDestroy(): void { }
 
   protected itemSelected(option: DropdownOption) {
+    this.defaultOption = option;
     this.onItemSelected.emit(option);
   }
 }
