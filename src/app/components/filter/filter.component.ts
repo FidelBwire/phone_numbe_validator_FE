@@ -14,17 +14,15 @@ export class FilterComponent {
 
   private countries: Country[] = [];
 
-  private selectedCountry!: number;
-  private selectedStatus!: string;
+  protected selectedCountry?: number;
+  protected selectedStatus?: string;
 
   protected countriesDropdownOptions: DropdownOption[] = [];
-  protected defaultOption!: DropdownOption;
 
   protected statusDropdownOptions: DropdownOption[] = [
-    { key: "Valid", value: "Valid"},
-    { key: "Invalid", value: "Invalid"},
+    { key: "Valid", value: "Valid" },
+    { key: "Invalid", value: "Invalid" },
   ]
-  protected defaultStatus: DropdownOption = this.statusDropdownOptions[0];
 
   private countriesSubscription!: Subscription;
 
@@ -51,10 +49,6 @@ export class FilterComponent {
             value: country.name
           })
         });
-
-        if (this.countriesDropdownOptions.length > 0) {
-          this.defaultOption = this.countriesDropdownOptions[0];
-        }
       }
     })
   }
@@ -71,7 +65,13 @@ export class FilterComponent {
   }
 
   protected selectStatus(option: DropdownOption) {
-    this.selectStatus = option.key;
+    this.selectedStatus = option.key;
+  }
+
+  protected Reset() {
+    this.selectedCountry = undefined;
+    this.selectedStatus = undefined;
+    this.applyFilters();
   }
 
 }

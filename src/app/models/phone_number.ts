@@ -4,4 +4,5 @@ export interface PhoneNumber {
     customerId: number;
     customer: string;
     country: string;
+    status: string;
 }

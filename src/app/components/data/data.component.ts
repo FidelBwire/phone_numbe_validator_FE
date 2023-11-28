@@ -15,7 +15,7 @@ export class DataComponent {
 
   private options!: FilterOptions | null;
   first: number = 0;
-  rows: number = 10;
+  rows: number = 8;
   pageLinkSize = 5;
   totalRecords = 0;
   alwaysShow: boolean = false;
@@ -68,7 +68,6 @@ export class DataComponent {
   }
 
   onPageChange(event: PaginatorState) {
-    console.log('Page: ' + event.page);
     if (event.rows != undefined)
       this.rows = event.rows;
 
