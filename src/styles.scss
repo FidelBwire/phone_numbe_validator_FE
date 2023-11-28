@@ -1,3 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap");
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-neutral-800;
+  }
+  html.dark {
+    @apply text-neutral-50;
+    @apply bg-neutral-800;
+  }
+}
+
+@layer components {
+  .dropdown_item {
+    @apply block w-full whitespace-nowrap bg-transparent px-4 py-2 font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline active:bg-neutral-100 disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600;
+}
+
+thead > tr {
+  @apply bg-neutral-100
+}
+
+tr {
+  @apply border-b border-neutral-300 hover:bg-neutral-100
+}
+
+th, td {
+  @apply font-medium px-6 py-2 text-left whitespace-nowrap text-[0.7rem] sm:text-xs
+}
+
+td {
+  @apply font-normal text-neutral-700
+}
+}

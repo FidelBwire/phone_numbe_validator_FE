@@ -1,3 +1,17 @@
-<div id="filter" class="">
-    
+<div id="filter bg-red-200 w-full" class="">
+    <div class="flex flex-row justify-end items-center gap-4 text-sm">
+        <div class="flex justify-end items-center gap-1 w-fit">
+            <span class="">Country:</span>
+            <app-dropdown (onItemSelected)="selectCountry($event)" [options]="countriesDropdownOptions" [defaultOption]="defaultOption"
+                class=""></app-dropdown>
+        </div>
+        <div class="flex justify-end items-center gap-1 w-fit">
+            <span class="">Status:</span>
+            <app-dropdown (onItemSelected)="selectStatus($event)" [options]="statusDropdownOptions" [defaultOption]="defaultStatus"
+                class=""></app-dropdown>
+        </div>
+        <div class="">
+            <button class="bg-blue-500  text-neutral-50 px-4 h-9 rounded-md hover:bg-blue-700" (click)="applyFilters()">Search</button>
+        </div>
+    </div>
 </div>

@@ -1,1 +1,26 @@
-<p>data works!</p>
+<div class="text-sm" *ngIf="!loading; else loader">
+    <div class="w-full overflow-x-scroll py-4">
+        <table>
+            <thead>
+                <tr>
+                    <th>Phone Number</th>
+                    <th>Customer</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let phoneNumber of phoneNumbers">
+                    <td>{{phoneNumber.phoneNumber}}</td>
+                    <td>{{phoneNumber.customer}}</td>
+                    <td>{{phoneNumber.country}}</td>  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #loader>
+    <p class="">Loading...</p>
+</ng-template>
+<div class="flex justify-center">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords" [alwaysShow]="alwaysShow" [showFirstLastIcon]="showFirstLastIcon" [showCurrentPageReport]="true" [currentPageReportTemplate]="currentPageReportTemplate" [styleClass]="'text-sm'"></p-paginator>
+</div>

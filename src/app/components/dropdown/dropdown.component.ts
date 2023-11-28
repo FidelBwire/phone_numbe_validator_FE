@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DropdownOption } from './models/dropdown_option';
+import { Dropdown, Ripple, initTE, } from "tw-elements";
 
 @Component({
   selector: 'app-dropdown',
@@ -14,7 +15,9 @@ export class DropdownComponent {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    initTE({ Dropdown, Ripple });
+  }
 
   ngOnDestroy(): void { }
 
